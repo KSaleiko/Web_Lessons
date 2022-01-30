@@ -1,0 +1,811 @@
+body {
+    margin: 0;
+    font-family: 'Raleway', sans-serif; /* стиль шрифта */
+    font-size: 14px; /* размер шрифта */
+    color: #6c7279; /* цвет шрифта */
+    -webkit-font-smoothing: antialiased;
+
+    background-color: #fff; /* цвет фона */
+}
+
+* , /* все элементы страницы */
+*:before, /* все что до этих лементов */
+*:after { /* рвсе что после этих элементов */
+    box-sizing: border-box; /* алгоритм для  вычисляения общей ширины и высоты элемента */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0; /* отступы со всех сторон у всех заголовков будут отсутвовать */
+}
+
+p { /* для всех абзацев */
+    margin: 0, 0, 10px, 0; /* сверху, справа, снизу, слева  */
+}
+
+/* Container
+=======================*/ /* контейнер для контента */
+.container {
+    width: 100%; /* ширина блока */
+    max-width: 1200px; /* максимальная ширина блока ( после того как добавили padding 15px нужно добавить к размеру нашего блока контента 1170 эти 15px справа и лева, т.е 1170 + (15*2) = 1200 */
+    margin: 0 auto; /*  0 - выравниванеи сверху и снизу , auto - выравнивание с лева и справа по центру */
+    padding: 0 15px; /* так как мы адаптируем нашу страницу под разные экраны, нужно чтобы все элементы страницы не прилипали к левой части экрана */
+}
+
+/* Header 
+=======================*/
+
+.header {
+    width: 100%;
+    height: 100px;
+    position: absolute; /* слой с шапкой ставим перед всеми остальными эллементами */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Работаем с нашей шапкой с классом fixed: */
+/* Если у шапки появляется класс fixed то мы меняем position:fixed*/
+.header.fixed {
+    height: auto;
+
+    position: fixed;
+
+    background-color: #31344e;
+}
+
+/* Если мы находимся в header с классом fixed, то мы работаем уже с эллементом .header__inner */
+/* Уменьшаем пэддинги сверху и снизу*/
+.header.fixed .header__inner {
+    padding: 15px 0;
+    /*padding-top: 15px;
+    padding-bottom: 15px;*/
+
+    border-bottom: 0px;
+}
+
+.header__inner {
+    display: flex; /* внешний тип отображения элемента */
+    justify-content: space-between; /* выравнивание элементов по главной оси */
+
+    padding: 35px 0;/* отступы сверху/снизу и слева/справа */
+
+    border-bottom: 1px solid #515369; /* выделение нижней границы шапки */
+    align-items: center; /* выравнивание эллементов по центру */
+}
+
+
+/* Nav 
+=======================*/
+
+.nav {
+    display: flex;
+    font-size: 13px;
+    font-weight: 700; /* 700 = bold */
+    text-transform: uppercase; /* делаем заглавные буквы */
+}
+
+.nav__link {
+    margin-left: 50px; /* отступ слева */
+    color: #fff; 
+    text-decoration: none; /* убираем подчеркивание текста */
+    opacity: 0.75; /* насколько будет празрачным элемент */
+    transition: opacity .1s linear; /* обеспечивает плавный переход каких-либо свойств: свойство (opacity) продолжительность плавного перехода(.1s)  */
+}
+
+.nav__link:first-child {
+    margin-left: 0;
+}
+
+.nav__link:hover { /* при наведении мыши на элемент делаем то что в {} */
+    opacity: 1;
+    /*text-decoration: underline;*/ /*  подчеркивание текста */
+}
+
+
+/* Intro
+=======================*/
+
+.intro {
+    display: flex;
+    flex-direction: column; /* каждый новый элемент в блоке intro будет начинаться с новой строки */
+    justify-content: center; /* выравнивание элементов по центру */
+    height: 750px;
+    padding-top: 100px;
+    background: #31344e url("img/intro-bg.jpg")  center no-repeat  /*cover*/; /* позиционирование картинки , cover - нужен для того, чтобы картинка пропорционально занимала всю ширину и высоту блока*/
+    background-size: cover;
+}
+
+.intro__inner {
+    width: 100%;
+    max-width: 970px;
+    margin: 0 auto; /* выравнивание по центру */
+
+    text-align: center;
+}
+
+.intro__title {
+    margin: 0 0 30px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 65px;
+    line-height: 1.1; /* т.е. 1.1 от 65px = 71.5px */
+    color: #fff;
+    font-weight: 700; /* bold */
+    text-transform: uppercase;
+}
+
+.intro__subtitle {
+    margin-bottom: 60px;
+    font-size: 22px;
+    color: #fff;
+    line-height: 1.5;
+    font-weight: 400; /* regular */
+}
+
+/* Button
+=======================*/
+
+.btn {
+    display: inline-block; /* нужен для того, чтобы мы могли задавать какие нам нужно внутренние отступы и размеры */
+    vertical-align: top; /* выравнивание по вертикальной границе: по верху */
+    padding: 14px 40px; /* отступ сверху/снизу и слева/справа */
+    
+    border-radius: 2px; /* скругление границ */
+    /*border: 0;*/ /* это нужно для тега button */
+    /*cursor: pointer;*/ /* это нужно для тега button */
+
+    font-family: inherit; /* будем наследовать шрифт у родителя */
+    font-size: 13px;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+
+    transition: background .1s linear; /* плавный переход для фона */
+}
+
+.btn--red {
+    background-color: #e84545;
+}
+
+.btn--red:hover {
+    background-color: #dd3434;
+}
+
+.btn--long {
+    min-width: 280px;
+}
+
+
+/* Features
+=======================*/
+
+.features {
+    display: flex; /* для удобного расположения элементов features__items */
+    flex-wrap: wrap; /* разрешаем переносить элементы на новую строку если они не помещаются в наш контейнер  */
+    margin: 95px 0;
+}
+
+.features__item {
+    width: 33.33333%;
+    padding: 0 40px ;
+    margin: 20px 0;
+
+    text-align: center;
+}
+
+.features__icon {
+    margin-bottom: 25px;
+}
+
+.features__title {
+    margin-bottom: 20px;
+
+    font-size: 14px;
+    color: #2d3033;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.features__text {
+    font-size: 14px;
+    color: #6c7279;
+    line-height: 1.5;
+    
+}
+
+/* Works
+=======================*/
+
+.works {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.works__item {
+    width: 25%;
+    height: 350px;
+
+    border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+
+
+    position: relative; 
+    overflow: hidden; /* скрываем все что будет вылезать за пределы блока works__item  */
+}
+
+.works__item:hover .works__content{ /* указываем что хотим показать .works__content */
+    opacity: 1; /* при наведении мыфши на блок появляется надпись с фоном*/
+}
+
+.works__photo {
+    min-width: 100%;
+    position: absolute; /* картинка не будет отдеальным физических объектом, а будет внтури work__item и позиционироваться абсолютно относительно этого блока */
+    top: 50%; /* выравнивание картинки по центру */
+    left: 50%; /* выравнивание картинки по центру */
+    z-index: 1; /*данный блок будет под блоком works__content */
+
+    transform: translate3d(-50%, -50%, 0); /* выравнивание картинки по центру */
+}
+
+.works__content {
+    display: flex;
+    flex-direction: column; /* каждый элемент контента с новой строки */
+    justify-content: center; /* выравнивание контента по центру по вертикали */
+    
+    width: 100%;
+    height: 100%;
+    
+    background-color: rgba(232, 69, 69, 0.9); /*0.9 - это непрозрачность нашего элемента*/
+
+    opacity: 0; /* в обычном состоянии блок с текстом и фоном невидим*/
+    transition: opacity .2s linear; /* плавный переход для opacity */
+
+    text-align: center; /* выравнивание контента по центру по горизонтали */
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2; /* данный блок будет поверх фотографии (блока works__photo)*/
+}
+
+.works__title {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.works__text {
+    font-size: 14px;
+    color: #fff;
+}
+
+
+/* Team
+=======================*/
+
+.team {
+    margin: 100px 0 70px; /* делаем снизу  70 вместо 100, так как добавили к item margin-bottom: 30 px */
+}
+
+.team__inner {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px; /* делаем ровно противоположное padding чтобы у нас блок с item начинался с самого начала сетки*/
+}
+
+.team__item {
+    width: 25%;
+    padding: 0 15px;
+    margin-bottom: 30px;
+}
+
+.team__photo { /* адаптируем картинку под разную ширину экрана (комп/планшет/телефон) */
+    margin-bottom: 20px;
+    
+    display: block; /* картинка отображается в блоке */
+    max-width: 100%; /* картинка занимает мах ширину этого блока */
+    height: auto; /* высота картинки автоматически будет изменяться (уменьшатся/увкличиваться) пропорционально ширине */
+}
+
+.team__name {
+    margin-bottom: 8px;
+
+    font-size: 22px;
+    color: #2d3033;
+}
+
+.team__prof {
+    margin-bottom: 15px;
+
+    font-size: 13px;
+    color: #e84545;
+    text-transform: uppercase;
+}
+
+.item__text {
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #6c7279;
+}
+
+/* Social
+=======================*/
+
+.social {
+    display: flex;
+}
+
+.social--footer {
+    justify-content: center;
+}
+
+.social__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 4px;
+
+    background-color: #fff;
+    border: 1px solid #e8ecee;
+
+    transition: background-color .1s linear; /* плавный переход цвета фона */
+}
+
+.social__item:hover {
+    background-color: #e8ecee;
+}
+
+.social__item:hover .social__icon { /* мы работаем с иконкой при наводе на .social__item */
+    fill: #000;
+}
+
+.social--footer .social__item{
+    background-color: transparent;
+    border-width: 2px;
+    border-color: #fff;
+    border-radius: 2px;
+}
+
+.social--footer .social__item:hover {
+    background-color: #fff;
+}
+
+.social__icon {
+    display: block;
+    height: 18px;
+    fill: #c6cacc;
+
+    transition: fill .1s linear;
+}
+
+.social--footer .social__icon{
+    fill: #fff;
+}
+
+/* Reviews
+=======================*/
+
+.reviews {
+    background-color: #53354a;
+    overflow: hidden; /* если карптинки будут большими, чтобы не вылезали за границы блока*/
+}
+
+.reviews__slider {
+    height: 500px;
+    overflow: hidden;
+}
+
+.reviews__slider.slick-initialized {
+    height: auto;
+}
+
+.reviews__item {
+    display: flex;
+    flex-wrap: wrap; 
+    overflow: hidden;
+
+}
+
+.reviews__photo {
+    width: 50%;
+    height: 500px;
+    position: relative; /* делается для того, чтобы мы нашу фотографию могли спозиционироватьотносительно нашего блока*/
+}
+
+.reviews__img {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 1;
+
+    transform: translateY(-50%); /* если высота фотографии будет больше чем 500 пикселей то она будет ровно отцентрована*/
+}
+
+.reviews__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    width: 50%;
+    padding-left: 80px;
+}
+
+.reviews__text {
+    margin-bottom: 25px;
+
+    font-family: "Cardo", sans-serif;
+    font-style: italic; /* наклоненные буквы */
+    font-size: 36px;
+    text-align: 1.2;
+    color: #fff;
+}
+
+.reviews__author {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700; /*bold*/
+    text-transform: uppercase;
+}
+
+.slick-dots {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0 0 10px;
+    list-style: none;
+    width: 50%;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.slick-dots li {
+    margin: 0 5px;
+}
+
+.slick-dots button {
+    width: 15px;
+    height: 15px;
+    padding: 0;
+
+    background: #fff;
+    border-radius: 50%;
+    border: 0;
+    opacity: 0.5;
+    cursor: pointer;
+
+    font-size: 0;
+    color: transparent;
+}
+
+.slick-dots button:focus {
+    outline: 0;
+}
+
+.slick-dots .slick-active button {
+    opacity: 1;
+}
+
+/* Team
+=======================*/
+.download {
+    margin: 90px 0;
+    text-align: center;
+}
+
+.download__title {
+    margin-bottom: 10px;
+    font-size: 28px;
+    color: #2d3033;
+    font-weight: 300;
+}
+
+.download__text {
+    margin-bottom: 30px;
+    font-size: 13px;
+    color: #2d3033;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+
+/* Footer
+=======================*/
+
+.footer {
+    background-color: #3a3e64;
+
+}
+
+.footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 70px 0;
+}
+
+.footer__block {
+    width: 33.33333%;
+    padding: 0 15px;
+
+    text-align: center;
+}
+
+.footer__title {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.footer__address {
+    font-size: 14px;
+    line-height: 1.5;
+    font-style: normal;
+    color: rgba(255, 255, 255, 0.5);
+
+}
+
+.footer__text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+/* Copyright
+=======================*/
+
+.copyright {
+    background-color: #313454;
+    padding: 20px 0;
+}
+
+.copyright__text {
+   text-align: center; 
+   font-size: 14px;
+    line-height: 1.5;
+   color: #808080;
+}
+
+.copyright__text span{
+    color: #fff;
+}
+
+/* Burger
+=======================*/
+
+.burger {
+    display: none;
+    padding: 9px 2px;
+    background: none;
+    border: 0;
+
+    cursor: pointer;
+}
+
+.burger__item {
+    display: block;
+    width: 28px;
+    height: 3px;
+
+    background-color: #fff;
+
+    font-size: 0; /* Чтобы слово Меню не было видно на странице*/
+    color: transparent; /* Цвет шрифта прозрачны */
+
+    position: relative;
+}
+
+/* Работа с псевдоэлементами before и after*/
+.burger__item:before,
+.burger__item:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+
+    background-color: #fff;
+
+    position: absolute;
+    right: 0;
+    z-index: 1;
+}
+
+.burger__item:before {
+    top: -8px;
+    width: 26px;
+}
+
+.burger__item:after {
+    bottom: -8px;
+    width: 30px;
+}
+
+/*.burger__item:after {
+    content: "";
+}*/
+
+/* Breakpoint - переломные точки - правила которые нужно поменять для какх-то блоков, управление медиазапросами 
+Media - медиазапросы
+=======================*/ 
+
+/* (сам запрос) - данный запрос будет срабатывать, когда ширина экрана будет = 1300px и меньше*/ 
+
+@media (max-width: 1300px) {
+    /*Works*/
+    .works__item {
+        width: 50%;
+    }
+}
+
+@media (max-width: 991px) {
+
+    /*Nav*/
+    .nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+
+        background-color: #31344e;
+        text-align: right;
+
+        position: absolute;
+        top: 100%; /* 100% от высоты шапки*/
+        right: 0;
+    }
+
+    /* если у нас навигация nav с классом show, то показывается меню */
+    .nav.show {
+        display: flex;
+    }
+
+    .nav__link {
+        padding: 9px 15px;
+    }
+
+    /* Burger*/
+    .burger {
+        display: block;
+    }
+
+    /*Intro*/
+    .intro__title {
+        font-size: 40px;
+    }
+
+    /*Features*/
+    .features__item {
+        width: 50%;
+    }
+
+    /*Team*/
+    .team__item {
+        width: 50%;
+        text-align: center;
+     }
+
+    .team__photo {
+        margin-left: auto; 
+        margin-right: auto;
+    }
+
+    /*Social*/
+    .social {
+        justify-content: center;
+    }
+
+    /*Revies*/
+    .reviews__photo {
+        width: 100%;
+        margin: 15px 0 40px;
+        overflow: hidden;
+    }
+
+    .reviews__content {
+        width: 100%;
+        padding-left: 0;
+        padding-bottom: 40px;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    /*Intro*/
+    .intro {
+        height: auto;
+        padding-top: 130px;
+        padding-bottom: 30px;
+    }
+
+    .intro__title {
+        font-size: 30px;
+    }
+
+    .intro__subtitle {
+        margin-bottom: 30px;
+        font-size: 16px;
+    }
+
+    /*Features*/
+    .features {
+        margin: 40px 0;
+    }
+
+    .features__item {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    /*Works*/
+    .works__item {
+        width: 100%;
+        height: 300px;
+    }
+
+    /*Team*/
+    .team {
+        margin: 60px 0 30px ; /*сверху, справа, снизу*/
+    }
+
+    .team__item {
+        width: 100%;
+        text-align: center;
+     }
+
+     /*Revies*/
+     .reviews__text {
+         font-size: 25px;
+         text-align: center;
+     }
+
+     .reviews__author {
+        text-align: center;
+     }
+
+     /*Btn*/
+     .btn--long {
+         min-width: 260px;
+     }
+
+     /*Download*/
+     .download {
+         margin: 50px 0;
+     }
+
+     .download__text {
+         font-size: 24px;
+     }
+
+     /*Footer*/
+    .footer__inner {
+        padding: 30px 0;
+    }
+
+    .footer__block {
+         width: 100%;
+         padding-left: 0;
+         padding-right: 0;
+         margin-bottom: 30px;
+    }
+
+    .footer__block:last-child {
+        margin-bottom: 0;
+   }
+}
+
+@media (max-width: 414px) {
+    /*Revies*/
+    .reviews__img{
+        right: -180px;
+    }
+}
